@@ -1,0 +1,5 @@
+.idea
+*.lock
+node_modules
+mysql/*.js
+db
