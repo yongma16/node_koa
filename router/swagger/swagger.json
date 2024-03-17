@@ -1,0 +1,58 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "koa 项目 swagger 文档",
+    "version": "1.0.0",
+    "description": "koa项目"
+  },
+  "host": "localhost:3000/swagger",
+  "basePath": "/",
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "return msg",
+        "tags": [
+          "IndexConfig"
+        ],
+        "responses": {
+          "200": {
+            "description": "A list of IndexConfig.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "Object",
+                  "items": {
+                    "$ref": "#/components/schemas/IndexConfig"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "IndexConfig": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "integer",
+            "description": "network status."
+          },
+          "msg": {
+            "type": "string",
+            "description": "des"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "IndexConfig",
+      "description": "IndexConfig"
+    }
+  ]
+}
