@@ -1,5 +1,6 @@
 const Router = require('koa-router');
 const router = new Router();
+const { getRedisKey, setRedisConfig } = require('../../utils/redis/index');
 
 /**
  * @swagger
@@ -41,6 +42,28 @@ const router = new Router();
  */
 router.get('/', async(ctx) => {
     ctx.body = [{ code: 200, msg: 'koa server' }];
+});
+
+router.get('/redis/data', async(ctx) => {
+    try {
+        const queryParams = ctx.request.query;
+        const { key } = queryParams;
+        const value = await getRedisKey(key)
+        ctx.body = { code: 200, msg: 'success!', data: value };
+    } catch (e) {
+        ctx.body = { code: 0, data: e, msg: 'fail' };
+    }
+});
+
+router.post('/redis/data', async(ctx) => {
+    try {
+        const bodyParams = ctx.request.body
+        const { key, value } = bodyParams
+        const resut = await setRedisConfig(key, value)
+        ctx.body = { code: 200, msg: 'success!', data: resut };
+    } catch (e) {
+        ctx.body = { code: 0, data: e, msg: 'fail' };
+    }
 });
 
 module.exports = router;

@@ -59,7 +59,11 @@ app.use((ctx, next) => {
 app.use(jwt({
     secret: 'yma16-app'
 }).unless({ // 配置白名单 api 注册 获取 token 获取验证码
-    path: [/\/swagger/]
+    path: [/\/swagger/,
+        /\/redis\/data/,
+        /\/chat\/bot/,
+        /\/sendEmailCode/,
+    ]
 }))
 
 // 使用路由
