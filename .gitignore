@@ -3,3 +3,4 @@
 node_modules
 mysql/*.js
 db
+package-lock.json
